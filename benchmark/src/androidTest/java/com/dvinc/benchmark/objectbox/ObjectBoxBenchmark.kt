@@ -45,7 +45,7 @@ class ObjectBoxBenchmark : BaseBenchmarkTest() {
 
     @Test
     fun create_simple_entities_10() {
-        val data = createSimpleEntities(100)
+        val data = createSimpleEntities(10)
         benchmarkRule.measureRepeated {
             boxSimpleEntity.put(data)
         }
@@ -102,7 +102,7 @@ class ObjectBoxBenchmark : BaseBenchmarkTest() {
 
     @Test
     fun read_simple_entities_10() {
-        val data = createSimpleEntities(100)
+        val data = createSimpleEntities(10)
         boxSimpleEntity.put(data)
         benchmarkRule.measureRepeated {
             boxSimpleEntity.all
@@ -151,6 +151,69 @@ class ObjectBoxBenchmark : BaseBenchmarkTest() {
         boxSimpleEntity.put(data)
         benchmarkRule.measureRepeated {
             boxSimpleEntity.all
+        }
+    }
+
+    @Test
+    fun delete_simple_entity_1() {
+        val entity = BoxSimpleEntity(name = "test")
+        boxSimpleEntity.put(entity)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.removeAll()
+        }
+    }
+
+    @Test
+    fun delete_simple_entities_10() {
+        val data = createSimpleEntities(10)
+        boxSimpleEntity.put(data)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.removeAll()
+        }
+    }
+
+    @Test
+    fun delete_simple_entities_100() {
+        val data = createSimpleEntities(100)
+        boxSimpleEntity.put(data)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.removeAll()
+        }
+    }
+
+    @Test
+    fun delete_simple_entities_1000() {
+        val data = createSimpleEntities(1000)
+        boxSimpleEntity.put(data)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.removeAll()
+        }
+    }
+
+    @Test
+    fun delete_simple_entities_10000() {
+        val data = createSimpleEntities(10000)
+        boxSimpleEntity.put(data)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.removeAll()
+        }
+    }
+
+    @Test
+    fun delete_simple_entities_25000() {
+        val data = createSimpleEntities(25000)
+        boxSimpleEntity.put(data)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.removeAll()
+        }
+    }
+
+    @Test
+    fun delete_simple_entities_50000() {
+        val data = createSimpleEntities(50000)
+        boxSimpleEntity.put(data)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.removeAll()
         }
     }
 }
