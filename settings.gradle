@@ -1,0 +1,2 @@
+include ':app', ':benchmark', ':database'
+rootProject.name='Android DB benchmark'
