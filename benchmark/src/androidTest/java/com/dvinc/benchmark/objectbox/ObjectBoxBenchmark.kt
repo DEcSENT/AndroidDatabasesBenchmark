@@ -36,7 +36,7 @@ class ObjectBoxBenchmark : BaseBenchmarkTest() {
     }
 
     @Test
-    fun insert_simple_entity_1() {
+    fun create_simple_entity_1() {
         val entity = BoxSimpleEntity(name = "test")
         benchmarkRule.measureRepeated {
             boxSimpleEntity.put(entity)
@@ -44,7 +44,7 @@ class ObjectBoxBenchmark : BaseBenchmarkTest() {
     }
 
     @Test
-    fun insert_simple_entities_10() {
+    fun create_simple_entities_10() {
         val data = createSimpleEntities(100)
         benchmarkRule.measureRepeated {
             boxSimpleEntity.put(data)
@@ -52,7 +52,7 @@ class ObjectBoxBenchmark : BaseBenchmarkTest() {
     }
 
     @Test
-    fun insert_simple_entities_100() {
+    fun create_simple_entities_100() {
         val data = createSimpleEntities(100)
         benchmarkRule.measureRepeated {
             boxSimpleEntity.put(data)
@@ -60,7 +60,7 @@ class ObjectBoxBenchmark : BaseBenchmarkTest() {
     }
 
     @Test
-    fun insert_simple_entities_1000() {
+    fun create_simple_entities_1000() {
         val data = createSimpleEntities(1000)
         benchmarkRule.measureRepeated {
             boxSimpleEntity.put(data)
@@ -68,10 +68,89 @@ class ObjectBoxBenchmark : BaseBenchmarkTest() {
     }
 
     @Test
-    fun insert_simple_entities_10000() {
+    fun create_simple_entities_10000() {
         val data = createSimpleEntities(10000)
         benchmarkRule.measureRepeated {
             boxSimpleEntity.put(data)
+        }
+    }
+
+    @Test
+    fun create_simple_entities_25000() {
+        val data = createSimpleEntities(25000)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.put(data)
+        }
+    }
+
+    @Test
+    fun create_simple_entities_50000() {
+        val data = createSimpleEntities(50000)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.put(data)
+        }
+    }
+
+    @Test
+    fun read_simple_entity_1() {
+        val entity = BoxSimpleEntity(name = "test")
+        boxSimpleEntity.put(entity)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.all
+        }
+    }
+
+    @Test
+    fun read_simple_entities_10() {
+        val data = createSimpleEntities(100)
+        boxSimpleEntity.put(data)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.all
+        }
+    }
+
+    @Test
+    fun read_simple_entities_100() {
+        val data = createSimpleEntities(100)
+        boxSimpleEntity.put(data)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.all
+        }
+    }
+
+    @Test
+    fun read_simple_entities_1000() {
+        val data = createSimpleEntities(1000)
+        boxSimpleEntity.put(data)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.all
+        }
+    }
+
+    @Test
+    fun read_simple_entities_10000() {
+        val data = createSimpleEntities(10000)
+        boxSimpleEntity.put(data)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.all
+        }
+    }
+
+    @Test
+    fun read_simple_entities_25000() {
+        val data = createSimpleEntities(25000)
+        boxSimpleEntity.put(data)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.all
+        }
+    }
+
+    @Test
+    fun read_simple_entities_50000() {
+        val data = createSimpleEntities(50000)
+        boxSimpleEntity.put(data)
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.all
         }
     }
 }

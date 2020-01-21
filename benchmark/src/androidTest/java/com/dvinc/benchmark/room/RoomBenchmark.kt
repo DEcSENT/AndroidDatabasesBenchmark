@@ -41,7 +41,7 @@ class RoomBenchmark : BaseBenchmarkTest() {
     }
 
     @Test
-    fun insert_simple_entity_1() {
+    fun create_simple_entity_1() {
         val data = RoomSimpleEntity(name = "foo")
         benchmarkRule.measureRepeated {
             roomSimpleEntityDao.insert(data)
@@ -49,7 +49,7 @@ class RoomBenchmark : BaseBenchmarkTest() {
     }
 
     @Test
-    fun insert_simple_entities_10() {
+    fun create_simple_entities_10() {
         val data = createSimpleEntities(100)
         benchmarkRule.measureRepeated {
             roomSimpleEntityDao.insert(data)
@@ -57,7 +57,7 @@ class RoomBenchmark : BaseBenchmarkTest() {
     }
 
     @Test
-    fun insert_simple_entities_100() {
+    fun create_simple_entities_100() {
         val data = createSimpleEntities(100)
         benchmarkRule.measureRepeated {
             roomSimpleEntityDao.insert(data)
@@ -65,7 +65,7 @@ class RoomBenchmark : BaseBenchmarkTest() {
     }
 
     @Test
-    fun insert_simple_entities_1000() {
+    fun create_simple_entities_1000() {
         val data = createSimpleEntities(1000)
         benchmarkRule.measureRepeated {
             roomSimpleEntityDao.insert(data)
@@ -73,10 +73,89 @@ class RoomBenchmark : BaseBenchmarkTest() {
     }
 
     @Test
-    fun insert_simple_entities_10000() {
+    fun create_simple_entities_10000() {
         val data = createSimpleEntities(10000)
         benchmarkRule.measureRepeated {
             roomSimpleEntityDao.insert(data)
+        }
+    }
+
+    @Test
+    fun create_simple_entities_25000() {
+        val data = createSimpleEntities(25000)
+        benchmarkRule.measureRepeated {
+            roomSimpleEntityDao.insert(data)
+        }
+    }
+
+    @Test
+    fun create_simple_entities_50000() {
+        val data = createSimpleEntities(50000)
+        benchmarkRule.measureRepeated {
+            roomSimpleEntityDao.insert(data)
+        }
+    }
+
+    @Test
+    fun read_simple_entity_1() {
+        val data = RoomSimpleEntity(name = "foo")
+        roomSimpleEntityDao.insert(data)
+        benchmarkRule.measureRepeated {
+            roomSimpleEntityDao.getEntities()
+        }
+    }
+
+    @Test
+    fun read_simple_entities_10() {
+        val data = createSimpleEntities(100)
+        roomSimpleEntityDao.insert(data)
+        benchmarkRule.measureRepeated {
+            roomSimpleEntityDao.getEntities()
+        }
+    }
+
+    @Test
+    fun read_simple_entities_100() {
+        val data = createSimpleEntities(100)
+        roomSimpleEntityDao.insert(data)
+        benchmarkRule.measureRepeated {
+            roomSimpleEntityDao.getEntities()
+        }
+    }
+
+    @Test
+    fun read_simple_entities_1000() {
+        val data = createSimpleEntities(1000)
+        roomSimpleEntityDao.insert(data)
+        benchmarkRule.measureRepeated {
+            roomSimpleEntityDao.getEntities()
+        }
+    }
+
+    @Test
+    fun read_simple_entities_10000() {
+        val data = createSimpleEntities(10000)
+        roomSimpleEntityDao.insert(data)
+        benchmarkRule.measureRepeated {
+            roomSimpleEntityDao.getEntities()
+        }
+    }
+
+    @Test
+    fun read_simple_entities_25000() {
+        val data = createSimpleEntities(25000)
+        roomSimpleEntityDao.insert(data)
+        benchmarkRule.measureRepeated {
+            roomSimpleEntityDao.getEntities()
+        }
+    }
+
+    @Test
+    fun read_simple_entities_50000() {
+        val data = createSimpleEntities(50000)
+        roomSimpleEntityDao.insert(data)
+        benchmarkRule.measureRepeated {
+            roomSimpleEntityDao.getEntities()
         }
     }
 }
