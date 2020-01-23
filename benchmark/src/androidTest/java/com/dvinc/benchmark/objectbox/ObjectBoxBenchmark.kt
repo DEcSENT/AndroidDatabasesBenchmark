@@ -36,22 +36,6 @@ class ObjectBoxBenchmark : BaseBenchmarkTest() {
     }
 
     @Test
-    fun create_simple_entity_1() {
-        val entity = BoxSimpleEntity(name = "test")
-        benchmarkRule.measureRepeated {
-            boxSimpleEntity.put(entity)
-        }
-    }
-
-    @Test
-    fun create_simple_entities_10() {
-        val data = createSimpleEntities(10)
-        benchmarkRule.measureRepeated {
-            boxSimpleEntity.put(data)
-        }
-    }
-
-    @Test
     fun create_simple_entities_100() {
         val data = createSimpleEntities(100)
         benchmarkRule.measureRepeated {
@@ -88,24 +72,6 @@ class ObjectBoxBenchmark : BaseBenchmarkTest() {
         val data = createSimpleEntities(50000)
         benchmarkRule.measureRepeated {
             boxSimpleEntity.put(data)
-        }
-    }
-
-    @Test
-    fun read_simple_entity_1() {
-        val entity = BoxSimpleEntity(name = "test")
-        boxSimpleEntity.put(entity)
-        benchmarkRule.measureRepeated {
-            boxSimpleEntity.all
-        }
-    }
-
-    @Test
-    fun read_simple_entities_10() {
-        val data = createSimpleEntities(10)
-        boxSimpleEntity.put(data)
-        benchmarkRule.measureRepeated {
-            boxSimpleEntity.all
         }
     }
 
@@ -155,20 +121,57 @@ class ObjectBoxBenchmark : BaseBenchmarkTest() {
     }
 
     @Test
-    fun delete_simple_entity_1() {
-        val entity = BoxSimpleEntity(name = "test")
-        boxSimpleEntity.put(entity)
+    fun update_simple_entities_100() {
+        val data = createSimpleEntities(100)
+        boxSimpleEntity.put(data)
+        val updatedData = boxSimpleEntity.all
+            .map { it.copy(name = "newTest") }
         benchmarkRule.measureRepeated {
-            boxSimpleEntity.removeAll()
+            boxSimpleEntity.put(updatedData)
         }
     }
 
     @Test
-    fun delete_simple_entities_10() {
-        val data = createSimpleEntities(10)
+    fun update_simple_entities_1000() {
+        val data = createSimpleEntities(1000)
         boxSimpleEntity.put(data)
+        val updatedData = boxSimpleEntity.all
+            .map { it.copy(name = "newTest") }
         benchmarkRule.measureRepeated {
-            boxSimpleEntity.removeAll()
+            boxSimpleEntity.put(updatedData)
+        }
+    }
+
+    @Test
+    fun update_simple_entities_10000() {
+        val data = createSimpleEntities(10000)
+        boxSimpleEntity.put(data)
+        val updatedData = boxSimpleEntity.all
+            .map { it.copy(name = "newTest") }
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.put(updatedData)
+        }
+    }
+
+    @Test
+    fun update_simple_entities_25000() {
+        val data = createSimpleEntities(25000)
+        boxSimpleEntity.put(data)
+        val updatedData = boxSimpleEntity.all
+            .map { it.copy(name = "newTest") }
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.put(updatedData)
+        }
+    }
+
+    @Test
+    fun update_simple_entities_50000() {
+        val data = createSimpleEntities(50000)
+        boxSimpleEntity.put(data)
+        val updatedData = boxSimpleEntity.all
+            .map { it.copy(name = "newTest") }
+        benchmarkRule.measureRepeated {
+            boxSimpleEntity.put(updatedData)
         }
     }
 

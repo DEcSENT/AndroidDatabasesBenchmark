@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface RoomSimpleEntityDao {
@@ -15,9 +16,12 @@ interface RoomSimpleEntityDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(entities: List<RoomSimpleEntity>)
 
-    @Query("SELECT * FROM roomsimpleentity")
+    @Query("SELECT * FROM room_simple_entity")
     fun getEntities(): List<RoomSimpleEntity>
 
-    @Query("DELETE FROM roomsimpleentity")
+    @Update
+    fun updateEntities(entities: List<RoomSimpleEntity>)
+
+    @Query("DELETE FROM room_simple_entity")
     fun deleteAllEntities()
 }
